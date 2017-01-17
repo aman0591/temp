@@ -7,16 +7,109 @@
 var app = angular.module("myShoppingList", []); 
 app.controller("myCtrl", function($scope) {
     $scope.products = ["Milk", "Bread", "Cheese"];
+	
+	
+	
+	//Localvariables
+ $scope.firstname = "";
+ $scope.filledform = false;
+ $scope.lastname = "";
+ $scope.age = "";
+ $scope.dob = "";
+ $scope.city = ["Chandigarh", "Dehradun", "Ambala","Delhi"];
+ 
+ 
+ 
+ //functions
+ $scope.submitForm = function() {
+       
+		
+	    $scope.array={fName:$scope.firstname, lName:$scope.lastname, age:$scope.age,dob:$scope.dob, city:$scope.selectedName};
+		localStorage.setItem("temp", $scope.array);
+		
+		$scope.xyz=localStorage.getItem("temp");
+		
+		$scope.filledform = true;
+		
+		
+		
+    }
+	
+	
 });
-</script>
 
+
+</script>
 <div ng-app="myShoppingList" ng-controller="myCtrl">
+<div ></div>
   <ul>
     <li ng-repeat="x in products">{{x}}</li>
   </ul>
+
+
+<div style="width:100%" ng-controller="ProjectCtrl" >
+    <div class="projectHead product" ng-init="check='Please fill all the information, to submit'">
+        <form class="wrap" name="myForm">
+            <div class="text left" ng-hide="filledform" >
+                <h1>Basic Form</h1>
+				
+				<div>First name:<br><input type="text" name="myinput" ng-model="firstname" ng-pattern="/^[ A-z_ ]+$/" required >&nbsp;&nbsp;{{firstname}}</div>
+				<span ng-show="myForm.myinput.$error.pattern" >Enter Valid Alpha Value</span>
+				
+				<div>Last name:<br><input type="text" name="myinput1"  ng-model="lastname" required>&nbsp;&nbsp;{{lastname}}</div>
+				
+				<div>Age:<br><input type="text" name="myinput2" ng-model="age" ng-pattern="/^[0-9]{1,2}$/" required >&nbsp;&nbsp;{{age}}</div>
+				<span ng-show="myForm.myinput2.$error.pattern" >Enter Valid Numeric Value</span>
+				
+				<div>D.O.B:<br><input type="text" name="myinput3" ng-pattern="/^[0-9]{1,10}$/" ng-model="dob" required>&nbsp;&nbsp;{{dob}}</div>
+				<span ng-show="myForm.myinput3.$error.pattern" >Enter Valid Numeric Value</span>
+				
+				<div>City:<br>
+				<select  ng-model="selectedName" name="myinput4" ng-options="x for x in city" required>
+                </select>&nbsp;&nbsp;{{selectedName}}
+				</div>
+				
+				<h3>{{check}}</h3>
+				<span ng-show="myForm.myinput2.$error.pattern" >Enter Valid Numeric Value</span>
+				
+				<div ng-if="myForm.myinput.$valid && myForm.myinput1.$valid && 
+				myForm.myinput2.$valid && myForm.myinput3.$valid &&myForm.myinput4.$valid">
+				<input type="button" class="btn" ng-click="submitForm()" value="Submit">
+				</div>
+                
+            </div>
+			<div ng-show="filledform">
+				<table class="table table-bordered">
+				<thead>
+				<tr>
+				<th>Firstname</th>
+				<th>Lastname</th>
+				<th>Age</th>
+				<th>DOB</th>
+				<th>City</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+				<td>{{array.fName}}</td>
+				<td>{{array.lName}}</td>
+				<td>{{array.age}}</td>
+				<td>{{array.dob}}</td>
+				<td>{{array.city}}</td>
+				</tr>
+				
+				</tbody>
+				</table>
+				
+				
+			</div>
+			
+            <img class="picture right" src="images/element.png" />
+            <div style="clear:both"></div>
+        </form>
+    </div>
+    <ng-include src="'ui/footer.jsp'"></ng-include>
 </div>
-
-<p>So far we have made an HTML list based on the items of an array.</p>
-
+</div>
 </body>
 </html>
