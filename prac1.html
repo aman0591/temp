@@ -6,7 +6,7 @@
 <script>
 var app = angular.module("myShoppingList", []); 
 app.controller("myCtrl", function($scope) {
-    $scope.products = ["Milk", "Bread", "Cheese"];
+  
 	
 	
 	
@@ -41,11 +41,7 @@ app.controller("myCtrl", function($scope) {
 
 </script>
 <div ng-app="myShoppingList" ng-controller="myCtrl">
-<div >
-  <ul>
-    <li ng-repeat="x in products">{{x}}</li>
-  </ul>
-</div>
+
 
 <div style="width:100%" >
     <div class="projectHead product" ng-init="check='Please fill all the information, to submit'">
