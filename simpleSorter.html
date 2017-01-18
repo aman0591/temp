@@ -1,32 +1,57 @@
 <!DOCname html>
 <html>
+
 <body>
 
-<p>Click the buttons to sort mobile on basis of Alpha Value and Numeric Value</p>
+<p>Basic Alpha/Numeric Sorter</p>
 
+<br>
+<p>Add your data</p>
+Company:<br>
+<input type="text" name="firstname" id="Company" required>
+<br>
+Model:<br>
+<input type="text" name="lastname" id="Model" required>
+<br>
+<p><button onclick="addM()">Add Data</button></p>
+<br><br>
 
-<button onclick="myFunction()">Numeric</button>
-
-<button onclick="alphaSort()">Alpha</button>
 
 <p id="demo"></p>
 
 
+<p>Click the buttons to sort mobile on basis of Alpha Value and Numeric Value</p>
+
+<button onclick="alphaSort()" >Alpha</button>
+<button onclick="myFunction()">Numeric</button>
 
 <script>
 var mobile = [
 {name:"iphone", model:2016},
 {name:"samsung", model:2001},
 {name:"xiomi", model:2010},
-{name:"Lenovo", model:2005},
+{name:"watch", model:2005},
 {name:"HTC", model:2003},
-{name:"Motorola", model:2009},
-{name:"sony", model:2003}
+{name:"swift", model:2009},
+{name:"macBook", model:2003}
 
 ]
 
-
 displaymobile();
+
+function addM() {
+
+var temp=document.getElementById("Company").value;
+var temp2=document.getElementById("Model").value;
+
+ var obj = {
+	"name" : temp,
+	"model" : temp2
+ }
+mobile.push(obj);
+displaymobile();
+
+}
 
 function myFunction() {
     mobile.sort(function(a, b){return a.model - b.model});
@@ -43,19 +68,27 @@ function alphaSort() {
     });
     displaymobile();
 }
-
-
 function displaymobile() {
-  document.getElementById("demo").innerHTML =
-  mobile[0].name + " " + mobile[0].model + "<br>" +
-  mobile[1].name + " " + mobile[1].model + "<br>" +
-  mobile[2].name + " " + mobile[2].model + "<br>" +
-  mobile[3].name + " " + mobile[3].model + "<br>" +
-  mobile[4].name + " " + mobile[4].model + "<br>" +
-  mobile[5].name + " " + mobile[5].model + "<br>" +
-  mobile[6].name + " " + mobile[6].model;
+var text = "";
+var i;
+for (i = 0; i < mobile.length; i++) {
+    text += mobile[i].name +"-"+ mobile[i].model   + "<br>";	
+}
+  document.getElementById("demo").innerHTML =text;
 }
 </script>
 
 </body>
+
+<style>
+#demo{
+background-color: beige;
+}
+body{
+text-align: center;
+}
+
+</style>
+
+
 </html>
