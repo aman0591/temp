@@ -4,19 +4,19 @@
 var app = angular.module('rwd1', []);
 app.config(['$routeProvider', function ($routeProvider) {
       $routeProvider.
-        when('/', { templateUrl: 'ui/index.jsp', activetab: 'projects', controller: HomeCtrl }).
+        when('/', { templateUrl: 'ui/page.html', activetab: 'projects', controller: HomeCtrl }).
         when('/project/:projectId', {
-          templateUrl: function (params) { return 'ui/' + params.projectId + '.jsp'; },
+          templateUrl: function (params) { return 'ui/' + params.projectId + '.html'; },
           controller: ProjectCtrl,
           activetab: 'projects'
         }).
         when('/privacy', {
-          templateUrl: 'ui/privacy.jsp',
+          templateUrl: 'ui/privacy.html',
           controller: PrivacyCtrl,
           activetab: 'privacy'
         }).
         when('/about', {
-          templateUrl: 'ui/about.jsp',
+          templateUrl: 'ui/about.html',
           controller: AboutCtrl,
           activetab: 'about'
         }).
