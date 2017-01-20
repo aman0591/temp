@@ -18,7 +18,7 @@ var app = angular.module("myApp", []);
 app.controller("myCtrl", function($scope) {
    $scope.memberName = ["Data1", "Data2", "Data3"];
      $scope.viewLink = ["View Links","Link1", "Link2", "Link3"];
-   
+   $('[data-toggle="popover"]').popover();  
    
    $("#filterID").hide();
   $scope.showBtn = true;
@@ -54,76 +54,120 @@ app.controller("myCtrl", function($scope) {
 <body>  
 
     <div class="container" ng-app="myApp" ng-controller="myCtrl">  
-           <div class=" col-xs-12 text-left boder1"><span class=""></span>Claims</div>
-		   <div class="col-xs-12" style="border-bottom: 1px solid grey;">
-            <div class="col-xs-7">	 </div> 	   
-		   <div class="col-xs-2 text-right"><span class=""></span><a href="#"> Quarterly Summaries</a></div>
-            <div class="col-xs-3 text-right"><span class=""></span><a href="#"> Statement of Payment</a></div>
-           </div>
-	<div class="row col-xs-12 text-right" ng-show="showBtn"><input type="button" class="btn btn-primary" ng-click="showFilters()" value="Show Filters"></div>	  
 	
+	<div class="col-xs-12 panel panel-default" style="    background-color: whitesmoke;">xyz Header</div>
+           <div class=" col-xs-12 text-left boder1 row"><span class=""></span>Claims</div>
+		   <div class="col-xs-12 panel panel-default" style="background-color: aliceblue;padding:0;">
+            <div class="col-sm-4 col-xs-0"></div> 	   
+		   <div class="col-sm-4 col-xs-6 text-right"><span class=""></span><a href="#"> Quarterly Summaries</a></div>
+            <div class="col-xs-6 col-sm-4 text-right"><span class=""></span><a href="#"> Statement of Payment</a></div>
+           </div>
+
+    <div class="col-xs-9" style="padding:0;">Member<div class="select1"><select class="selectWidth form-control" ng-model="selectedName" ng-options="x for x in memberName">
+    </select></div>	 </div>
+    	   
+	<div class="col-xs-3 text-right" style="padding:0;" ng-show="showBtn">
+	<input type="button" class="btn btn-primary" ng-click="showFilters()" value="Show Filters"></div>	  
+      
+	 
 	<div id="filterID">
-	<div class="col-xs-12">	  
-     <div>Member</div><div class="select1"><select ng-model="selectedName" ng-options="x for x in memberName">
-</select></div>	 
-   </div>
+	
+	<div class="col-xs-12 " STYLE="border-top: 2px solid ;margin-top:2%">	</div>	
    
    <div class="row col-xs-12">	  
-     <div class="col-xs-3"><div>Search By Claim Number</div><div><input type="text" class="dropdown" value="claimNumber"></div></div>
+     <div class="col-xs-12 col-sm-6 col-md-6"><div>Search By Claim Number</div><div><input class="selectWidth form-control"  type="text"  value="claimNumber"></div></div>
      
-    <div class="col-xs-3"><div>By Status</div><div><select ng-model="selectedName" ng-options="x for x in memberName">
-</select></div></div>
+    <div class="col-xs-12 col-sm-6 col-md-6"><div>By Status</div><div><select class="selectWidth form-control" ng-model="selectedName" ng-options="x for x in memberName">
+    </select></div></div>
      <div class="col-xs-6"></div>	
    </div>
-   <div class="row col-xs-12">	  
-     <div class="col-xs-6"><div>By Status</div>
-	 <div><input type="text" class="dropdown" value="fromDate"> <input type="text" style="margin-left: 15%;" class="dropdown" value="toDate"></div></div>
+   
+	<div class="row col-xs-12">	  
+	 <div class="col-xs-12 col-sm-6"><div>By Date</div>
+		<div class="row col-xs-12">
+		<div class="col-sm-6" style=" padding-left: 0px;"><input class="form-control dateWidth"  type="date" value="fromDate"> </div>
+		<div class=" col-sm-6" style=" padding-left: 0px;"><input type="date" class="date-margin form-control dateWidth"   value="toDate"> </div>
+	 </div>
+	</div>
      
-    <div class="col-xs-3"><div>By Type</div><div><select ng-model="selectedName" ng-options="x for x in memberName">
-</select></div></div>
+    <div class="col-xs-12 col-sm-3"><div>By Type</div><div><select class="form-control selectWidth" ng-model="selectedName" ng-options="x for x in memberName">
+    </select></div></div>
      <div class="col-xs-3"></div>	
    </div>
    
    <div class="row col-xs-12 text-right"><input type="button" class="btn btn-primary" ng-click="showFilters()" value="Hide Filters"></div>
+   
+       <div class="col-xs-12" style="border-bottom: 2px solid ;margin-top: 2%;"></div>
+  
+   </div>
+
+   
+   <div class="col-xs-12 panel panel-default" style="margin-top: 2%;padding-left: 0;
+    padding-right: 0;">
+   <div class="col-xs-6 tabColor">Recent Claims</div> 
+   <div class="col-xs-6 text-right tabColor">
+   <a href="#" title="Data" data-toggle="popover" data-placement="bottom" data-content="Data">Export</a>
    </div>
    
-   <div class="row col-xs-12" style="border-top: 1px solid grey;
-    margin-top: 2%;border-bottom: 1px solid grey;">
-   <div class="col-xs-6">Recent Claims</div> <div class="col-xs-6 text-right">Export</div>
-   
-   <div class="col-xs-2"><div>Service Date</div> <div ng-repeat="x in memberName">{{x}}</div></div>
-    <div class="col-xs-2"><div>Claim Number</div> <div ng-repeat="x in memberName">{{x}}</div></div>
-	 <div class="col-xs-2"><div>Submitted Amount</div> <div ng-repeat="x in memberName">{{x}}</div></div>
-	  <div class="col-xs-2"><div>Status</div> <div ng-repeat="x in memberName">{{x}}</div></div>
-	   <div class="col-xs-2"><div>Benefits</div> <div ng-repeat="x in memberName">{{x}}</div></div>
-	    <div class="col-xs-2"><div  ng-repeat="x in viewLink" ><a href="#">{{x}}</link></div>
+   <div class="col-xs-4 col-sm-2"><div>Date</div> <div ng-repeat="x in memberName">{{x}}</div></div>
+    <div class="col-sm-4 col-md-2 hidden-xs"><div>Claim Number</div> <div ng-repeat="x in memberName">{{x}}</div></div>
+	 <div class="col-sm-2 hidden-xs hidden-sm"><div>Amount</div> <div ng-repeat="x in memberName">{{x}}</div></div>
+	  <div class="col-sm-2 hidden-xs"><div>Status</div> <div ng-repeat="x in memberName">{{x}}</div></div>
+	   <div class="col-xs-4 col-sm-2"><div>Benefits</div> <div ng-repeat="x in memberName">{{x}}</div></div>
+	    <div class="col-xs-4  col-sm-2"><div  ng-repeat="x in viewLink" ><a href="#">{{x}}</link></div>
    
    </div>
    
    
    
    </div>
+   
+   <div class="col-xs-12 panel panel-default" style="    background-color: whitesmoke;">xyz Footer</div>
    </div>
 </body>  
 
 
 <style>
-.boder1{
-border-bottom: 1px solid grey;
-}
-
-select{
-    width: 68%;
-}
-
-.select1{
-   width: 31%;
+.align{
+text-align: left;
 }
 body {
 font-size: 16px;
 line-height: 30px;
+background-color: azure;
 }
+
+.selectWidth{
+      width: 250px;
+  }
   
+  .dateWidth{
+      width: 120px;
+	 
+
+  }
+  
+  .tabColor{
+      background-color: aliceblue;
+  }
+ 
+  
+  @media (max-width: 768px) {
+  .selectWidth{
+      width: 300px;
+  }
+  .dateWidth{
+      width: 300px;
+	 
+
+  }
+  .date-margin{
+   margin-top: 15px;
+  }
+ 
+  
+  
+  }
 
 
 </style>
