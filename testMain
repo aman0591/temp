@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<script src="https://raw.github.com/aman0591/temp/angularPractice/angular.min.js"></script>
+<script src="https://cdn.rawgit.com/aman0591/temp/angularPractice/angular.min.js"></script>
 <body ng-app="">
 
 <form>
